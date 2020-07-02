@@ -3,6 +3,7 @@ package BaseUtility;
 import genralized_utillity.Log4j.Log;
 import genralized_utillity.Screenshot.Screenshot;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
@@ -21,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MobileBaseUtility {
 
-    protected static AppiumDriver driver;
+    protected static AndroidDriver driver;
     protected static WebDriverWait wait;
 
 
@@ -36,8 +37,8 @@ public class MobileBaseUtility {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("deviceName", "emulator-5554");
             capabilities.setCapability("platformName", "Android");
-            capabilities.setCapability("appActivity", "com.amazon.mShop.splashscreen.StartupActivity");
-            capabilities.setCapability("appPackage", "com.amazon.mShop.android.shopping");
+            capabilities.setCapability("appActivity", "com.shaadi.android.ui.login.NewLoginActivity");
+            capabilities.setCapability("appPackage", "com.shaadi.android");
             capabilities.setCapability("automationName", "UiAutomator2");
             capabilities.setCapability("autoGrantPermissions", "true");
             capabilities.setCapability("newCommandTimeout", 500);
@@ -47,11 +48,11 @@ public class MobileBaseUtility {
             final File classpath = new File(System.getProperty("user.dir"));
             final File appdir = new File(classpath, "src/test/resources/app/");
             //final File app = new File(appdir, AppVersion.getAPPTITLE() + ".apk");
-            final File app = new File(appdir, "Amazon_shopping.apk");
+            final File app = new File(appdir, "Shaadi_com.apk");
             capabilities.setCapability("app", app.getAbsolutePath());
 
             //Initializing driver object
-            driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
             //Initializing explicit wait object
             driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
             wait = new WebDriverWait(driver, 30);
@@ -86,5 +87,14 @@ public class MobileBaseUtility {
             System.out.println(e);
         }
     }
+
+    /**
+     * This method will swipe android screen using AndroidUIAutomator
+     * @param menuOption
+     */
+    public void verticalSwipe(String menuOption) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""+menuOption+"\").instance(0))");
+    }
+
 }
 
