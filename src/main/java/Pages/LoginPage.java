@@ -11,19 +11,13 @@ public class LoginPage {
 
     AppiumDriver driver;
 
-    @FindBy(id = "sign_in_button")
-    MobileElement gotoLogin;
-
-    @FindBy(xpath = "//android.widget.EditText[@text=’username’]")
+    @FindBy(xpath = "//android.widget.EditText[@text='Mobile No. / Email ID']")
     MobileElement username;
 
-    @FindBy(xpath = "//android.widget.Button[@text='Continue']")
-    MobileElement continueButton;
-
-    @FindBy(xpath = "//android.widget.EditText[@text=’password’]")
+    @FindBy(xpath = "//android.widget.EditText[@text='Password']")
     MobileElement password;
 
-    @FindBy(xpath = "//android.widget.Button[@text='Sign-In']")
+    @FindBy(xpath = "//android.widget.Button[@text='Login']")
     MobileElement signInButton;
 
 
@@ -34,24 +28,24 @@ public class LoginPage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public WebElement gotoLoginPage() {
-        return gotoLogin;
-    }
-
     public WebElement enterUser() {
+
         return username;
     }
 
-    public WebElement clickContinue() {
-        return continueButton;
-    }
-
     public WebElement enterPassword() {
+
         return password;
     }
 
-    public WebElement loginToAmazon() {
+    public WebElement loginToShaadi() {
+
         return signInButton;
+    }
+
+    public void hideKeyboard(){
+
+        driver.hideKeyboard();
     }
 
 }
