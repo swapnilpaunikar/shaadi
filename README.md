@@ -13,7 +13,7 @@ INTRODUCTION
 
 Current Maintainer: Swapnil Paunikar <swapnilpaunikar21@gmail.com>
 
-This is a sample basic Mobile automation framework to test Amazon application.
+This is a sample basic Mobile automation framework to test Shaadi.com application.
 
 
 INSTALLATION
